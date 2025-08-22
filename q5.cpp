@@ -71,7 +71,47 @@ int precedence(char op)
     }
     return 0;
 }
+class intSTACK
+{
+	int arr[SIZE];
+	int top;
 	
+	public:
+	intSTACK()
+	{
+		top = -1;
+	}
+	
+	void push(int val)
+	{
+		if(top == SIZE -1)
+		{
+			cout<<"stack is full"<<endl;
+		}
+		else
+		{
+			++top;
+			arr[top] = val;
+		}
+	}
+	
+	int pop()
+	{
+		if(top == -1)
+		{
+			return '\0';
+		}
+		else
+		{
+			return arr[top--];
+		}
+	}
+	
+	bool isEmpty()
+	{
+	    return top == -1;
+	}
+};
 
 int main()
 {
@@ -129,7 +169,7 @@ int main()
     
     
     
-    STACK t;
+    intSTACK t;
     
     
     
@@ -165,6 +205,5 @@ int main()
     }
     cout<<"result: "<<t.pop()<<endl;
 }
-
 
 
