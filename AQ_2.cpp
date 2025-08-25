@@ -1,62 +1,21 @@
 class Solution {
-    vector<int> s;
-    vector<int> Min_s;
   public:
-    Solution() {
-        s.clear();
-        Min_s.clear();
-        
-    }
-
-   
-    void push(int x)
+    vector<int> nextLargerElement(vector<int>& arr) 
     {
-        s.push_back(x);
+        int n = arr.size();
+        vector<int> val(n,-1);
+        stack<int> s;
         
-        if(Min_s.empty() || x <= Min_s.back())
+        for(int i = 0 ;i < n ; i++)
         {
-            Min_s.push_back(x);
-        }
-    }
-
-   
-    void pop() 
-    {
-        if(!s.empty())
-        {
-            if(Min_s.back() == s.back())
+            while(!s.empty() && (arr[i] > arr[s.top()]))
             {
-                Min_s.pop_back();
+                int index = s.top();
+                s.pop();
+                val[index] = arr[i];
             }
-            s.pop_back();
+            s.push(i);
         }
-    }
-
-        
-   
-    int peek() 
-    {
-       if(s.empty())
-       {
-           return -1;
-       }
-       else
-       {
-           return s.back();
-       }
-    }
-        
-
-  
-    int getMin() 
-    {
-        if(Min_s.empty())
-        {
-            return -1;
-        }
-        else
-        {
-            return Min_s.back();
-        }
+        return val;
     }
 };
